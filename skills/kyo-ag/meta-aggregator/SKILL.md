@@ -22,7 +22,7 @@ curl -X POST https://api.kyo.ag/competitions \
     "tokenIn": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     "tokenOut": "0xB8f28C60dD8240141185a192fa4156A23E189305",
     "amountIn": "1000000000000000000",
-    "userAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "userAddress": "0x0000000000000000000000000000000000000000",
     "slippage": 0.01
   }'
 
@@ -175,7 +175,7 @@ comp = requests.post(f"{BASE}/competitions", headers=JSON_HEADERS, json={
     "tokenIn": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     "tokenOut": "0xB8f28C60dD8240141185a192fa4156A23E189305",
     "amountIn": "1000000000000000000",
-    "userAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "userAddress": "0x0000000000000000000000000000000000000000",
     "slippage": 0.01
 }).json()
 
