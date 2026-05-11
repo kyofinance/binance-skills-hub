@@ -6,7 +6,7 @@ description: |
   Use this skill when users search tokens, check token prices, view market data, or request kline/candlestick charts.
 metadata:
   author: binance-web3-team
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Query Token Info Skill
@@ -43,7 +43,7 @@ metadata:
 
 **URL**: 
 ```
-https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search
+https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search/ai
 ```
 
 **Request Parameters**:
@@ -57,12 +57,14 @@ https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/tok
 **Request Headers**:
 ```
 Accept-Encoding: identity
+User-Agent: binance-web3/1.1 (Skill)
 ```
 
 **Example Request**:
 ```bash
-curl --location 'https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search?keyword=xxx&chainIds=56,8453,CT_501&orderBy=volume24h' \
---header 'Accept-Encoding: identity'
+curl --location 'https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search/ai?keyword=xxx&chainIds=56,8453,CT_501&orderBy=volume24h' \
+--header 'Accept-Encoding: identity' \
+--header 'User-Agent: binance-web3/1.1 (Skill)'
 ```
 
 **Response Example**:
@@ -128,7 +130,7 @@ curl --location 'https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/
 
 **URL**: 
 ```
-https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market/token/meta/info
+https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market/token/meta/info/ai
 ```
 
 **Request Parameters**:
@@ -141,12 +143,14 @@ https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market
 **Request Headers**:
 ```
 Accept-Encoding: identity
+User-Agent: binance-web3/1.1 (Skill)
 ```
 
 **Example Request**:
 ```bash
-curl --location 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market/token/meta/info?chainId=56&contractAddress=0x55d398326f99059ff775485246999027b3197955' \
---header 'Accept-Encoding: identity'
+curl --location 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market/token/meta/info/ai?chainId=56&contractAddress=0x55d398326f99059ff775485246999027b3197955' \
+--header 'Accept-Encoding: identity' \
+--header 'User-Agent: binance-web3/1.1 (Skill)'
 ```
 
 **Response Example**:
@@ -212,7 +216,7 @@ curl --location 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/
 
 **URL**: 
 ```
-https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info
+https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info/ai
 ```
 
 **Request Parameters**:
@@ -225,12 +229,14 @@ https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/tok
 **Request Headers**:
 ```
 Accept-Encoding: identity
+User-Agent: binance-web3/1.1 (Skill)
 ```
 
 **Example Request**:
 ```bash
-curl --location 'https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info?chainId=56&contractAddress=0x55d398326f99059ff775485246999027b3197955' \
---header 'Accept-Encoding: identity'
+curl --location 'https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info/ai?chainId=56&contractAddress=0x55d398326f99059ff775485246999027b3197955' \
+--header 'Accept-Encoding: identity' \
+--header 'User-Agent: binance-web3/1.1 (Skill)'
 ```
 
 **Response Example**:
@@ -347,7 +353,7 @@ https://dquery.sintral.io/u-kline/v1/k-line/candles
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | address | string | Yes | Token contract address |
-| platform | string | Yes | Chain platform: `eth`, `bsc`, `solana`, `base` |
+| platform | string | Yes | Chain platform: `ethereum`, `bsc`, `solana`, `base` |
 | interval | string | Yes | Kline interval (see Interval Reference below) |
 | limit | number | No | Number of candles to return (has higher priority than `from`) |
 | from | number | No | Start timestamp in milliseconds |
@@ -379,7 +385,7 @@ https://dquery.sintral.io/u-kline/v1/k-line/candles
 
 | Chain | platform value |
 |-------|---------------|
-| Ethereum | eth |
+| Ethereum | ethereum |
 | BSC | bsc |
 | Solana | solana |
 | Base | base |
@@ -387,12 +393,14 @@ https://dquery.sintral.io/u-kline/v1/k-line/candles
 **Request Headers**:
 ```
 Accept-Encoding: identity
+User-Agent: binance-web3/1.1 (Skill)
 ```
 
 **Example Request**:
 ```bash
 curl --location 'https://dquery.sintral.io/u-kline/v1/k-line/candles?address=0x55d398326f99059ff775485246999027b3197955&interval=1min&limit=500&platform=bsc&to=1772126280000' \
---header 'Accept-Encoding: identity'
+--header 'Accept-Encoding: identity' \
+--header 'User-Agent: binance-web3/1.1 (Skill)'
 ```
 
 **Response Example**:
@@ -430,6 +438,10 @@ Each candle is an array with 7 elements in order:
 | 6 | count | number | Transaction count |
 
 ---
+
+## User Agent Header
+
+Include `User-Agent` header with the following string: `binance-web3/1.1 (Skill)`
 
 ## Notes
 

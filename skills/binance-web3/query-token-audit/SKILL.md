@@ -56,6 +56,7 @@ https://web3.binance.com/bapi/defi/v1/public/wallet-direct/security/token/audit
 ```
 Content-Type: application/json
 Accept-Encoding: identity
+User-Agent: binance-web3/1.4 (Skill)
 ```
 
 **Example Request**:
@@ -64,6 +65,7 @@ curl --location 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/secu
 --header 'Content-Type: application/json' \
 --header 'source: agent' \
 --header 'Accept-Encoding: identity' \
+--header 'User-Agent: binance-web3/1.4 (Skill)' \
 --data '{
     "binanceChainId": "56",
     "contractAddress": "0x55d398326f99059ff775485246999027b3197955",
@@ -129,19 +131,25 @@ curl --location 'https://web3.binance.com/bapi/defi/v1/public/wallet-direct/secu
 | 0-1 | LOW | Proceed with caution | Lower risk detected, but NOT guaranteed safe. DYOR. |
 | 2-3 | MEDIUM | Exercise caution | Moderate risks detected, review risk items carefully |
 | 4 | HIGH | Avoid trading | Critical risks detected, high probability of loss |
-| 5 | BLOCKED | Block transaction | Severe risks confirmed, do NOT proceed |
+| 5 | HIGH | Block transaction | Severe risks confirmed, do NOT proceed |
 
 **IMPORTANT**: LOW risk does NOT mean "safe." Audit results are point-in-time snapshots. Project teams can modify contracts or restrict liquidity after purchase. These risks cannot be predicted in advance.
 
-**Result Validity**:
+**Response Handling**:
 
-Audit results are ONLY valid when both conditions are met:
-- `hasResult: true` — Audit data is available
-- `isSupported: true` — Token is supported for audit
-
-When invalid, do NOT display risk level or security checks.
+- If `hasResult=false` OR `isSupported=false`:
+  → Reply: "Security audit data is not available for this token on this chain."
+  → Do NOT show `riskLevel`, `riskLevelEnum`, or `riskItems` (data is unreliable when either field is false)
+  → You may suggest the user verify the contract address and chain, or try again later
+- If `hasResult=true` AND `isSupported=true`:
+  → Show the full audit result including risk level, tax info, and all risk items
+  → Apply the Risk Level Reference table above for actionable guidance
 
 ---
+
+## User Agent Header
+
+Include `User-Agent` header with the following string: `binance-web3/1.4 (Skill)`
 
 ## Notes
 

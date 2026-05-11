@@ -16,6 +16,30 @@ Browse the existing skills to understand patterns and naming conventions before 
 
 ---
 
+## Installation
+
+Get started with Binance Skills Hub in a single command. Works with various agents such as OpenClaw and Claude Code.
+
+### Prerequisites
+
+Before installing Binance Skills Hub, ensure you have the following prerequisites:
+
+* **Node.js** (version 22 or higher)
+
+### Install Skills Hub
+
+Run the following command to add Binance Skills Hub to your project:
+
+```bash
+npx skills add https://github.com/binance/binance-skills-hub
+```
+
+### Authentication
+
+For Binance Skills, certain endpoints require you to provide Binance API credentials. You can do this by setting environment variables, using a secrets file (such as `.env` or `.openclaw/secrets.env`) , or sending them directly to the agent in the chat. For more details, see the [Security](./skills/binance/spot/SKILL.md#security) section in each skill.
+
+---
+
 ## Contribution
 
 We welcome contributions.
@@ -37,8 +61,8 @@ To add a new skill:
    title: <Skill Name>
    description: A clear description of what the skill does and when to use it.
    metadata:
-     - version: <Skill Version>
-     - author: <Your Github Username>
+     version: <Skill Version>
+     author: <Your Github Username>
    license: MIT
    ---
 
